@@ -1,0 +1,27 @@
+INSTALLATION GUIDE
+------------------
+1. Upload files from the "new_files" folder to your site.
+2. Edit admin/auth.php and find this code (around line 87):
+
+$smarty->assign("redirect","admin");
+
+and above it insert this:
+
+// Google SiteMap XML
+include $xcart_dir."/modules/xCartMod_Google_Sitemap/sitemap_xml.php";
+// Google SiteMap XML
+
+3. Visit the admin home page of your site.
+
+The sitemap.xml file will created in your main store folder and updated daily automatically.
+
+You can check it:
+
+http://yoursite.com/sitemap.xml
+
+NOTES:
+- you can add link to your sitemap.xml file here: https://www.google.com/webmasters/tools
+- we don't recommend that you use this mod on your site if you already use and and SEO URL module
+
+AUTHOR:
+James Harvey (jchharvey@gmail.com)

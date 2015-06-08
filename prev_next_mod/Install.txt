@@ -1,0 +1,61 @@
+
+INSTALLATION INSTRUCTION
+
+**************************************************************
+
+1. In product.php add this text:
+
+// === Next - Previous products  ===
+
+$mem_list = func_query("SELECT pr.productid, pr.product, mem.membershipid FROM $sql_tbl[products_categories] AS cat, $sql_tbl[products] AS pr LEFT JOIN $sql_tbl[product_memberships] AS mem ON mem.productid = pr.productid WHERE cat.categoryid = '$product_info[categoryid]' AND pr.productid = cat.productid AND pr.forsale='Y' ORDER BY pr.product");
+
+$list = array();
+if (is_array($mem_list))
+	foreach($mem_list as $li) {
+		if ($li["membershipid"] == $user_account["membershipid"] || $li["membershipid"] == 0 || $li["membershipid"] == "")
+			$list[] = $li;
+	}
+
+if (is_array($list))
+	foreach($list as $x=>$li)
+		if ($li["productid"] == $productid) {
+			// previous
+			if ($list[$x-1]["productid"] != "")
+				$prev = $list[$x-1];
+			else
+				$prev = end($list);
+			
+			// next
+			if ($list[$x+1]["productid"] != "")
+				$next = $list[$x+1];
+			else
+				$next = $list[0];
+		}
+
+$smarty->assign("next", $next);
+$smarty->assign("prev", $prev);
+
+// === Next - Previous products  ====
+
+
+berfore this lines:
+
+# Assign the current location line
+$smarty->assign("location", $location);
+
+*****************************************************************************
+
+2. In skin1/customer/main/product.tpl add this text at the top of the file:
+
+{* === Next - Previous products  === *}
+
+{include file="customer/next_prev.tpl"}
+
+{* === Next - Previous products  === *}
+
+*****************************************************************************
+
+3. Copy next_prev.tpl to skin1/customer/ folder.
+
+AUTHOR:
+James Harvey (jchharvey@gmail.com)
