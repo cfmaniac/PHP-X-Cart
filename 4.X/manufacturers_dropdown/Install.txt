@@ -1,0 +1,31 @@
+
+INSTALLATION INSTRUCTION
+
+**************************************************************
+
+1. Open Your skin1/modules/Manfacturers/menu_manufacturers.tpl
+
+replace:
+<ul>
+
+      {foreach from=$manufacturers_menu item=m}
+         <li><a href="manufacturers.php?manufacturerid={$m.manufacturerid}">{$m.manufacturer}</a></li>
+      {/foreach}
+
+      {if $show_other_manufacturers}
+        <li><a href="manufacturers.php">{$lng.lbl_other_manufacturers}</a></li>
+      {/if}
+
+    </ul>
+	
+with:
+<select name="manufacturers" id="manufacturers" onchange="if (this.selectedIndex > 0) location.href=this[this.selectedIndex].value;">
+    <option>Manufacturers</option>
+    {foreach from=$manufacturers_menu item=m}
+    <option value="manufacturers.php?manufacturerid={$m.manufacturerid}">{$m.manufacturer}</option>
+    {/foreach}
+    </select>
+
+
+AUTHOR:
+James Harvey (jchharvey@gmail.com)
