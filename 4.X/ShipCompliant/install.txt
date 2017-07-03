@@ -1,0 +1,34 @@
+Install ShipCompliant Module
+================================================
+This module integrates X-Cart One Page Checkout into the
+ShipCompliant API for the validation of shipping alcoholic
+beverages to areas within the US.
+
+This module has been developed and tested on the 4.X version
+of the X-Cart E-Commerce Engine.
+================================================
+
+Install the Module into the database.
+Use the included sql/module.sql file in PHPMyAdmin or other
+MySQL database editor tool and run the insert command into your
+database. 
+
+This enables the Module to be Activated/DeActivated via the X-Cart
+Administration Panel, Module Settings Page.
+
+You can find the module under either the Shipping or Stats filters for
+the X-Cart Modules.
+
+==================================================
+Backup your tpl files!
+
+Then upload the modules/ directory to your shop's installation.
+Then upload the skin/common_files/ directory.
+
+The templates added will be:
+pages/us/wws.html
+
+The Templates that will be overidden will be:
+modules/One_Page_Checkout/ajax.checkout.js
+
+===================================================
