@@ -1,0 +1,172 @@
+<h1>Where We Ship</h1>
+
+<p>
+	If your order does not contain wine, we ship to all states. Cooper&rsquo;s Hawk is only allowed to ship wine to states where allowed by law. A person of at least 21 years of age must be present to sign for packages that contain alcohol shipped by UPS. Due to Indiana state law we can ship alcohol to your address if you are a Wine Club member only. If you have any questions or concerns, please do not hesitate to contact our Member &amp; Guest Services at 888-440-WINE.</p><br />
+
+<p><strong> *Please enter the city, state, and zip code below to check shipping eligibility.</strong></p>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+	
+					   
+			});
+		}
+	
+	
+		$('#zipcodes').submit( function(){
+			var city = $('#city').val();
+                        var state = $('#state').val();
+			var zip = $('#zip').val();
+function stupid_monkey(city,state,zip){
+			
+			$.post("/modules/CH_ShipCompliant/api_call.php",{city:city,state:state,zip:zip}, function(data) {
+
+                        if(data=="cantship"){
+                                 var message = 'We’re sorry.  State law prohibits us from being able to ship wine to your location at this time.  If you have any questions or concerns, please contact our Member & Guest Services at 888-440-WINE';
+                           } else if (data=="canship"){
+                                 var message = 'We are able to ship wine to your location.  Please remember, a person of at least 21 years of age must be present to sign for packages that contain alcohol shipped by UPS.';
+			   } else if (data=="member"){
+                                 var message = 'We are able to ship to your location; however, you must be a Wine Club Member to receive wine. Please Register to enter your Wine Club Member number. If you have questions or concerns, please contact our Member & Guest Services at 888-440-WINE';
+                           } else {
+                                var message = 'We’re sorry.  We are unable to verify the information you have provided. Please verify you have entered your city, state, and zip code of where you would like to ship. If you have any questions or concerns, please contact our Member & Guest Services at 888-440-WINE';
+}
+			   $('#zip_response').html('<div class="alertBox">'+message+'</div>');
+			   $('.alertBox').fadeIn().delay(6000).fadeOut();
+
+			stupid_monkey(city, state, zip);
+
+			
+			return false;
+			
+		});
+	});
+
+	
+	
+	
+
+	
+
+
+</script>
+
+<style type="text/css">
+.alertBox{
+	background: #61584E;
+	color: #FFF8DD;
+	padding: 5px;
+	display: none;
+	width: 356px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+
+#search_table td {
+    padding: 3px;
+}
+
+#headers {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#city{
+
+}
+
+#state{
+margin-bottom: 0px;
+
+}
+
+#zip{
+width: 90px;
+}
+
+</style>
+
+<br />
+
+<form action="#" method="post" id="zipcodes">
+	<table id="search_table">
+    <tr id="headers">
+    <td>City</td>
+    <td>State</td>
+    <td>Zip</td>
+    <td><td>
+    <tr>
+    
+    <tr>
+    <td><input type="text" name="zippers" id="city" /></td>
+		<td><select id="state" name="zippers">
+	<option value="Alabama">Alabama</option>
+	<option value="Alaska">Alaska</option>
+	<option value="Arizona">Arizona</option>
+	<option value="Arkansas">Arkansas</option>
+	<option value="California">California</option>
+	<option value="Colorado">Colorado</option>
+	<option value="Connecticut">Connecticut</option>
+	<option value="Delaware">Delaware</option>
+	<option value="District of Columbia">District of Columbia</option>
+	<option value="Florida">Florida</option>
+	<option value="Georgia">Georgia</option>
+	<option value="Hawaii">Hawaii</option>
+	<option value="Idaho">Idaho</option>
+	<option value="Illinois">Illinois</option>
+	<option value="Indiana">Indiana</option>
+	<option value="Iowa">Iowa</option>
+	<option value="Kansas">Kansas</option>
+	<option value="Kentucky">Kentucky</option>
+	<option value="Louisiana">Louisiana</option>
+	<option value="Maine">Maine</option>
+	<option value="Maryland">Maryland</option>
+	<option value="Massachusetts">Massachusetts</option>
+	<option value="Michigan">Michigan</option>
+	<option value="Minnesota">Minnesota</option>
+	<option value="Mississippi">Mississippi</option>
+	<option value="Missouri">Missouri</option>
+	<option value="Montana">Montana</option>
+	<option value="Nebraska">Nebraska</option>
+	<option value="Nevada">Nevada</option>
+	<option value="New Hampshire">New Hampshire</option>
+	<option value="New Jersey">New Jersey</option>
+	<option value="New Mexico">New Mexico</option>
+	<option value="New York">New York</option>
+	<option value="North Carolina">North Carolina</option>
+	<option value="North Dakota">North Dakota</option>
+	<option value="Ohio">Ohio</option>
+	<option value="Oklahoma">Oklahoma</option>
+	<option value="Oregon">Oregon</option>
+	<option value="Pennsylvania">Pennsylvania</option>
+	<option value="Rhode Island">Rhode Island</option>
+	<option value="South Carolina">South Carolina</option>
+	<option value="South Dakota">South Dakota</option>
+	<option value="Tennessee">Tennessee</option>
+	<option value="Texas">Texas</option>
+	<option value="Utah">Utah</option>
+	<option value="Vermont">Vermont</option>
+	<option value="Virginia">Virginia</option>
+	<option value="Washington">Washington</option>
+	<option value="West Virginia">West Virginia</option>
+	<option value="Wisconsin">Wisconsin</option>
+	<option value="Wyoming">Wyoming</option>
+	</select></td>
+	
+<td><input type="text" name="zippers" id="zip" /></td>
+    <td><input type="submit" value="Check Status" class="search_button" /></td>
+	</tr>
+
+<tr>
+<td colspan="4" height="110" align="center">
+<div id="zip_response"></div>
+</td>
+</tr>
+    </table>
+	
+</form>
